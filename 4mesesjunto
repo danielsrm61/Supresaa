@@ -1,128 +1,187 @@
-index.html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>4 Meses - Presente</title>
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: linear-gradient(180deg,#ffeef0 0%, #fff 60%); color:#222}
-.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:30px}
-.card{width:920px;max-width:100%;background:rgba(255,255,255,0.95);border-radius:18px;box-shadow:0 12px 40px rgba(0,0,0,0.12);overflow:hidden;position:relative;padding:28px}
-header{display:flex;gap:18px;align-items:center}
-.title{font-size:24px;font-weight:700}
-.subtitle{color:#8b8b90;font-size:14px}
-.counters{display:flex;gap:12px;margin-top:18px}
-.counter{flex:1;background:linear-gradient(180deg, #fff, #fff);border-radius:12px;padding:14px;border:1px solid rgba(0,0,0,0.05);text-align:center}
-.counter .label{font-size:13px;color:#8b8b90}
-.counter .time{font-size:18px;font-weight:700;margin-top:8px}
-.actions{display:flex;gap:8px;margin-top:18px}
-.btn{padding:10px 14px;border-radius:10px;border:none;cursor:pointer;font-weight:600}
-.btn-primary{background:#ff5a7c;color:#fff}
-.btn-ghost{background:transparent;border:1px solid rgba(0,0,0,0.06)}
-.cartao-wrap{perspective:1200px;margin-top:20px}
-.cartao{width:100%;height:220px;border-radius:12px;position:relative;transform-style:preserve-3d;transition:transform 0.9s cubic-bezier(.2,.9,.3,1)}
-.cartao.open{transform:rotateY(-180deg)}
-.lado{position:absolute;inset:0;border-radius:12px;display:flex;align-items:center;justify-content:center;padding:18px;backface-visibility:hidden}
-.lado.frente{background:linear-gradient(135deg,#ffeef0,#ffdbe6);font-size:18px}
-.lado.verso{background:linear-gradient(135deg,#fff,#ffdbe6);transform:rotateY(180deg);flex-direction:column;gap:8px}
-.mensagem{font-size:20px;text-align:center}
-.assinatura{margin-top:8px;font-family:'Brush Script MT', cursive;font-size:20px}
-.caixa{margin-top:18px;display:flex;gap:12px}
-.mini-box{width:140px;height:70px;border-radius:10px;background:#fff;border:1px dashed rgba(0,0,0,0.06);display:flex;align-items:center;justify-content:center;cursor:pointer}
-.mini-box.open{background:linear-gradient(180deg,#fff,#ffdfe6)}
-.galeria{margin-top:18px;display:flex;gap:10px}
-.galeria img{width:120px;height:80px;border-radius:10px;object-fit:cover;cursor:pointer;opacity:0.95;border:3px solid rgba(255,255,255,0.6)}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;padding:20px;visibility:hidden;opacity:0;transition:all .2s}
-.modal.show{visibility:visible;opacity:1}
-.modal img{max-width:90%;max-height:80%;border-radius:12px}
-.hearts{pointer-events:none;position:fixed;inset:0;overflow:hidden}
-.heart{position:absolute;font-size:20px;opacity:0;transform:translateY(0) scale(0.6)}
-#fireworks{position:absolute;inset:0;pointer-events:none}
-footer{margin-top:14px;text-align:center;color:#9a9a9f;font-size:13px}
-@media (max-width:640px){ .cartao{height:200px} .galeria img{width:84px;height:56px} }
-</style>
+  <meta charset="UTF-8">
+  <title>Supresa 💖</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    h1 {
+      margin-top: 20px;
+      font-size: 2.5em;
+    }
+    .box {
+      margin: 50px auto;
+      padding: 40px;
+      width: 250px;
+      background: #fff;
+      color: #e91e63;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .box:hover { transform: scale(1.05); }
+    .message {
+      display: none;
+      margin: 30px auto;
+      max-width: 600px;
+      font-size: 1.2em;
+      line-height: 1.6;
+      color: #fff;
+    }
+    .gallery {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 10px;
+      padding: 20px;
+    }
+    .gallery img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+    .music-btn {
+      background: #e91e63;
+      border: none;
+      color: #fff;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 30px;
+      cursor: pointer;
+      margin: 20px;
+    }
+    .counters {
+      margin: 20px auto;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .counter {
+      background: rgba(255,255,255,0.2);
+      padding: 15px;
+      border-radius: 15px;
+      min-width: 200px;
+    }
+    /* corações */
+    .heart {
+      position: fixed;
+      top: -10px;
+      font-size: 20px;
+      color: #ff4081;
+      animation: fall 5s linear infinite;
+    }
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+    /* fogos */
+    .firework {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: gold;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+    }
+    @keyframes explode {
+      from { transform: scale(0.5); opacity: 1; }
+      to { transform: scale(3); opacity: 0; }
+    }
+  </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="card">
-    <canvas id="fireworks"></canvas>
-    <div class="hearts" id="hearts"></div>
-    <header>
-      <div>
-        <div class="title">4 meses juntos ❤️</div>
-        <div class="subtitle">Parabéns pra nós — hoje a história começou em 03/05/2025</div>
-      </div>
-      <div style="margin-left:auto;text-align:right">
-        <div style="font-size:12px;color:#8b8b90">Presente criado com carinho</div>
-        <div style="font-size:12px;color:#8b8b90">Toque em "Nossa música" para ouvir</div>
-      </div>
-    </header>
+  <h1>💖 Nossa História 💖</h1>
+
+  <div class="box" onclick="openSurprise()">🔐 Clique para abrir</div>
+
+  <div id="surprise" style="display:none;">
+    <p class="message">Meu amor, cada dia contigo é único! Obrigado por estar comigo nessa caminhada. Te amo infinitamente ❤️</p>
+
+    <button class="music-btn" onclick="playMusic()">🎶 Tocar nossa música</button>
+    
     <div class="counters">
       <div class="counter">
-        <div class="label">Desde nosso primeiro beijo<br/><small>03/05/2025</small></div>
-        <div class="time" id="contador1">Carregando...</div>
+        <h3>⏳ Desde o primeiro beijo</h3>
+        <p id="kissCounter"></p>
       </div>
       <div class="counter">
-        <div class="label">Desde que começamos a namorar<br/><small>12/06/2025</small></div>
-        <div class="time" id="contador2">Carregando...</div>
-      </div>
-    </div>
-    <div class="actions">
-      <button class="btn btn-primary" id="botao-musica">Nossa música ♫</button>
-      <button class="btn btn-ghost" id="botao-abre-cartao">Abrir cartão</button>
-      <button class="btn btn-ghost" id="botao-galeria">Relembrar momentos</button>
-      <button class="btn btn-ghost" id="botao-frases">Surpresinha</button>
-    </div>
-
-    <div class="cartao-wrap">
-      <div class="cartao" id="cartao">
-        <div class="lado frente">
-          <div style="text-align:center">
-            <div style="font-size:22px;font-weight:700">Para você, meu amor</div>
-            <div style="margin-top:8px;color:#8b8b90">Clique no cartão para abrir a surpresa</div>
-          </div>
-        </div>
-        <div class="lado verso">
-          <div class="mensagem">Hoje celebramos o que construímos juntos — cada riso, cada abraço, cada dia.</div>
-          <div class="assinatura">Com amor, Daniel</div>
-        </div>
+        <h3>💍 Desde que começamos a namorar</h3>
+        <p id="loveCounter"></p>
       </div>
     </div>
 
-    <div class="caixa">
-      <div class="mini-box" id="mini-box">Clique pra abrir</div>
-      <div style="flex:1;display:flex;align-items:center;gap:10px">
-        <div style="flex:1;color:#8b8b90">Dentro tem uma surpresa especial :)</div>
-      </div>
+    <div class="gallery" id="gallery">
+      <img src="foto1.jpg" alt="Foto 1">
+      <img src="foto2.jpg" alt="Foto 2">
+      <img src="foto3.jpg" alt="Foto 3">
     </div>
-
-    <div class="galeria" id="galeria" style="display:none">
-      <img src="https://raw.githubusercontent.com/danielsrm61/Supresaa/refs/heads/main/IMG-20250613-WA0046.jpg" alt="foto1">
-      <img src="https://raw.githubusercontent.com/danielsrm61/Supresaa/refs/heads/main/IMG-20250717-WA0028.jpg" alt="foto2">
-      <img src="https://raw.githubusercontent.com/danielsrm61/Supresaa/refs/heads/main/IMG-20250613-WA0003.jpg" alt="foto3">
-    </div>
-
-    <audio id="audio" preload="none">
-      <source src="https://drive.google.com/uc?export=download&id=1-8pSisP9rGW7KYl8aHbdgttU2He8bbX4" type="audio/mpeg">
-      Seu navegador não suporta áudio.
-    </audio>
-
-    <div class="modal" id="modal">
-      <img id="modal-img" src="" alt="Foto ampliada">
-    </div>
-
-    <footer>
-      <small>Toque no botão da música para começar a ouvir (navegadores pedem interação para tocar áudio)</small>
-    </footer>
   </div>
-</div>
 
-<script>
-// Contadores
-function atualizaContador(id,data){
-  const el=document.getElementById(id);
-  function atualizar(){
-    const agora=new Date();
-    const inicio=new Date(data
+  <audio id="music" src="https://www.youtube.com/embed/EqU4JtXwWlo"></audio>
+
+  <script>
+    function openSurprise() {
+      document.querySelector(".box").style.display = "none";
+      document.getElementById("surprise").style.display = "block";
+      document.getElementById("gallery").style.display = "grid";
+      launchFireworks();
+    }
+
+    function playMusic() {
+      window.open("https://www.youtube.com/watch?v=EqU4JtXwWlo", "_blank");
+    }
+
+    // Contadores
+    function updateCounters() {
+      const kissDate = new Date("2025-05-03T00:00:00");
+      const loveDate = new Date("2025-06-12T00:00:00");
+      const now = new Date();
+
+      function formatCounter(start) {
+        const diff = now - start;
+        const months = Math.floor(diff / (1000*60*60*24*30));
+        const days = Math.floor(diff / (1000*60*60*24)) % 30;
+        const hours = Math.floor(diff / (1000*60*60)) % 24;
+        const minutes = Math.floor(diff / (1000*60)) % 60;
+        return `${months} meses, ${days} dias, ${hours} horas e ${minutes} minutos`;
+      }
+
+      document.getElementById("kissCounter").textContent = formatCounter(kissDate);
+      document.getElementById("loveCounter").textContent = formatCounter(loveDate);
+    }
+    setInterval(updateCounters, 60000);
+    updateCounters();
+
+    // Corações caindo
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.textContent = "💖";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 500);
+
+    // Fogos
+    function launchFireworks() {
+      for (let i=0; i<20; i++) {
+        const fw = document.createElement("div");
+        fw.className = "firework";
+        fw.style.left = Math.random()*100+"vw";
+        fw.style.top = Math.random()*100+"vh";
+        document.body.appendChild(fw);
+        setTimeout(() => fw.remove(), 1000);
+      }
+    }
+  </script>
+</body>
+</html￼Enter
